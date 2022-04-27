@@ -1,1 +1,1 @@
-protoc --go_out=. ./api/cacher.proto
+protoc --go_out=. --go-grpc_out=. api/*.proto
