@@ -1,4 +1,4 @@
-package cacher
+package server
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"github.com/go-redsync/redsync/v4"
 	"github.com/go-redsync/redsync/v4/redis/goredis/v8"
 	"github.com/xpoh/cacher/pkg/config"
-	pb "github.com/xpoh/cacher/pkg/proto"
+	pb "github.com/xpoh/server/pkg/proto"
 	"google.golang.org/grpc"
 	"log"
 	"math/rand"
