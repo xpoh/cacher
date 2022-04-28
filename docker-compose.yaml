@@ -1,7 +1,25 @@
 version: '3.8'
 services:
-  cache:
+  redis:
     image: redis:latest
     restart: always
     ports:
       - '6379:6379'
+
+  cacher:
+    build: .
+    image: cacher
+    depends_on:
+      - redis
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    ports:
+      - "40000:40000" # Go Debugger (host:container)
+      - "9000:9000"   # prometheus metrics
+    shm_size: "2gb"
+
+networks:
+  default:
+    name: server
+    driver: bridge

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.0
 // 	protoc        v3.19.2
-// source: api/cacher.proto
+// source: api/server.proto
 
 package proto
 
@@ -145,12 +145,12 @@ func file_api_cacher_proto_rawDescGZIP() []byte {
 
 var file_api_cacher_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_cacher_proto_goTypes = []interface{}{
-	(*Request)(nil),  // 0: cacher.Request
-	(*Response)(nil), // 1: cacher.Response
+	(*Request)(nil),  // 0: server.Request
+	(*Response)(nil), // 1: server.Response
 }
 var file_api_cacher_proto_depIdxs = []int32{
-	0, // 0: cacher.Cacher.GetRandomDataStream:input_type -> cacher.Request
-	1, // 1: cacher.Cacher.GetRandomDataStream:output_type -> cacher.Response
+	0, // 0: server.Cacher.GetRandomDataStream:input_type -> server.Request
+	1, // 1: server.Cacher.GetRandomDataStream:output_type -> server.Response
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

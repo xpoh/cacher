@@ -1,0 +1,38 @@
+FROM golang:1.18 as builder
+
+WORKDIR /go/src/cacher
+
+COPY . .
+
+RUN go get -d -v ./...
+
+RUN go build -o /app/server ./cmd/server.go
+
+FROM alpine:latest
+
+COPY --from=builder /app/cacher /app/cacher
+
+COPY configs/config.yaml /app/configs/config.yaml
+
+WORKDIR /app
+
+ENTRYPOINT ["/app/cacher"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ package client
 
 import (
 	"context"
-	pb "github.com/xpoh/cacher/pkg/proto"
+	pb "github.com/xpoh/server/pkg/proto"
 	"io"
 	"log"
 	"sync"
