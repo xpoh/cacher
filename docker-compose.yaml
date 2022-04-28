@@ -15,6 +15,9 @@ services:
       - redis
     ports:
       - "50005:50005"
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
 
   client:
     build:

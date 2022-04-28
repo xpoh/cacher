@@ -25,7 +25,7 @@ type Server struct {
 	pb.UnimplementedCacherServer
 }
 
-func (s Server) GetRandomDataStream(in *pb.Request, srv pb.Cacher_GetRandomDataStreamServer) error {
+func (s Server) GetRandomDataStream(_ *pb.Request, srv pb.Cacher_GetRandomDataStreamServer) error {
 	ctx := context.Background()
 	n := len(s.cfg.URLs)
 	var err error
@@ -69,7 +69,10 @@ func (s Server) GetRandomDataStream(in *pb.Request, srv pb.Cacher_GetRandomDataS
 				//r := string(b)
 				r = "from web: " + url
 
-				res.Body.Close()
+				err = res.Body.Close()
+				if err != nil {
+					return
+				}
 
 				if err != nil {
 					log.Printf("Error read request body (%v)", err)
@@ -106,7 +109,7 @@ func (s *Server) Run() {
 	s.cfg = cfg
 
 	rdb := goredislib.NewClient(&goredislib.Options{
-		Addr: "localhost:6379",
+		Addr: "redis:6379",
 		DB:   0,
 	})
 	s.rdb = rdb
@@ -122,7 +125,7 @@ func (s *Server) Run() {
 	s.rsync = rs
 
 	// create listiner
-	lis, err := net.Listen("tcp", "localhost:50005")
+	lis, err := net.Listen("tcp", "server:50005")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
