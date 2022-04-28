@@ -1,18 +1,17 @@
-package server
+package cacher
 
 import (
+	"cacher/pkg/config"
+	pb "cacher/pkg/proto"
 	"context"
 	"fmt"
 	goredislib "github.com/go-redis/redis/v8"
-	"github.com/go-redsync/redsync/v4"
-	"github.com/go-redsync/redsync/v4/redis/goredis/v8"
-	"github.com/xpoh/cacher/pkg/config"
-	pb "github.com/xpoh/server/pkg/proto"
 	"google.golang.org/grpc"
 	"log"
 	"math/rand"
 	"net"
 	"net/http"
+
 	"sync"
 	"time"
 )

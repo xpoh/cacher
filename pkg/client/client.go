@@ -1,8 +1,8 @@
 package client
 
 import (
+	pb "cacher/pkg/proto"
 	"context"
-	pb "github.com/xpoh/server/pkg/proto"
 	"io"
 	"log"
 	"sync"
@@ -13,10 +13,10 @@ import (
 type Client struct{}
 
 func (c *Client) Run() {
-	// dial server
+	// dial cacher
 	conn, err := grpc.Dial(":50005", grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("can not connect with server %v", err)
+		log.Fatalf("can not connect with cacher %v", err)
 	}
 	wg := sync.WaitGroup{}
 

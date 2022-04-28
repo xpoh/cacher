@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.2
-// source: api/server.proto
+// source: api/cacher.proto
 
 package proto
 
@@ -34,7 +34,7 @@ func NewCacherClient(cc grpc.ClientConnInterface) CacherClient {
 }
 
 func (c *cacherClient) GetRandomDataStream(ctx context.Context, in *Request, opts ...grpc.CallOption) (Cacher_GetRandomDataStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Cacher_ServiceDesc.Streams[0], "/server.Cacher/GetRandomDataStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &Cacher_ServiceDesc.Streams[0], "/cacher.Cacher/GetRandomDataStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (x *cacherGetRandomDataStreamClient) Recv() (*Response, error) {
 	return m, nil
 }
 
-// CacherServer is the server API for Cacher service.
+// CacherServer is the cacher API for Cacher service.
 // All implementations must embed UnimplementedCacherServer
 // for forward compatibility
 type CacherServer interface {
@@ -118,7 +118,7 @@ func (x *cacherGetRandomDataStreamServer) Send(m *Response) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Cacher_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "server.Cacher",
+	ServiceName: "cacher.Cacher",
 	HandlerType: (*CacherServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -128,5 +128,5 @@ var Cacher_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "api/server.proto",
+	Metadata: "api/cacher.proto",
 }
