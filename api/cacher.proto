@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package protobuf;
+package cacher;
 
 option go_package = "./proto";
 
-service StreamService {
+service Cacher {
   rpc GetRandomDataStream(Request) returns (stream Response) {}
 }
 
